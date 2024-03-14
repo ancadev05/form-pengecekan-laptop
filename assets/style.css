@@ -1,0 +1,47 @@
+body{
+  background-color: grey;
+}
+p, span, textarea {
+  display:block;
+  font-size: 11px;
+  margin: 0;
+}
+.item {
+  text-align: left;
+}
+
+td,
+th {
+  font-size: 11px;
+}
+
+.mb-3 tr td input {
+  border: 0px;
+  border-bottom: 1px dotted black;
+  width: 250px;
+}
+
+tbody td input{
+  border: none;
+}
+/* Format kertas umum */
+.kertas {
+  /* height: 297mm; */
+  width: 210mm;
+  background-color: white;
+  padding: 0.8cm;
+  margin: auto;
+}
+
+@media print {
+  .cek, #cetak {
+    display: none;
+  }
+  /* #cetak{
+    display: none;
+  } */
+}
+
+.ket{
+  width: 100%;
+}
