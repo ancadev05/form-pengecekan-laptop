@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cek Baterai</title>
+
+        <link
+            rel="stylesheet"
+            href="../assets/bootstrap5/css/bootstrap.min.css"
+        />
+        <link rel="stylesheet" href="../assets/style.css" />
+    </head>
+    <body>
+        <div class="container p-4">
+            <h2></h2>
+            <div class="mb-2">
+                <label for="nama" class="form-label">Ketik Nama</label>
+                <input type="text" class="form-control" name="nama" id="nama"/>
+            </div>
+            <h3 id="kata"></h3>
+            <button class="btn btn-primary " id="btn" onclick="kata()">Klik</button>
+        </div>
+        <script src="../assets/bootstrap5/js/bootstrap.bundle.min.js"></script>
+        <script src="../assets/script.js"></script>
+
+        <script>
+
+          function kata(){
+            let nama = document.getElementById('nama').value
+            let p = document.getElementById('kata')
+            let btn = document.getElementById('btn')
+
+            // menghilangkan tombol
+            // btn.addEventListener('click', function(){
+            //   this.classList.toggle('d-none')
+            // })
+
+            btn.classList.toggle('d-none')
+
+            p.innerText = `"Hay ${nama}, Jika kamu tersenyum di hadapan masalah, masalah pun menjadi layu dan larut."`
+
+          }
+        </script>
+    </body>
+</html>
