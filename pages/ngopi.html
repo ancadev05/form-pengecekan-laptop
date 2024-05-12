@@ -11,44 +11,143 @@
         />
         <link rel="stylesheet" href="../assets/style.css" />
     </head>
+
     <body>
         <div class="container p-4">
             <h2></h2>
-            <div class="mb-2" id="form">
-                <label for="nama" class="form-label">Ketik Nama</label>
-                <input type="text" class="form-control" name="nama" id="nama" />
+            <div id="form">
+                <div class="mb-2">
+                    <label for="nama" class="form-label">Nama :</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="nama"
+                        id="nama"
+                        placeholder="ketik namamu disini..."
+                        required
+                    />
+                </div>
+                <button
+                    type="submit"
+                    class="btn btn-sm btn-primary"
+                    id="btn"
+                    onclick="kata()"
+                >
+                    Klik
+                </button>
             </div>
-            <div class="card p-3 d-none" id="card">
-                <div id="kata"></div>
+
+            <!-- kata -->
+            <div class="card p-3 d-none" id="kata">
+                <div id="kata1"></div>
                 <div id="kata2"></div>
             </div>
-            <button class="btn btn-primary" id="btn" onclick="kata()">
-                Klik
-            </button>
+            <!-- /kata -->
+
+            <div id="part2" class="my-3 d-none">
+                <p id="konfir" class="mb-1"></p>
+                <button class="btn btn-sm btn-primary" onclick="ya()">
+                    Ya
+                </button>
+            </div>
+
+            <div id="part3" class="my-3 d-none">
+                <p id="konfir2" class="mb-1">Yang jujur dong Kak!</p>
+                <button class="btn btn-sm btn-primary" onclick="sudah()">
+                    Jujur, sudah kok..
+                </button>
+            </div>
+
+            <!-- tampil gambar -->
+            <div id="gambar" class="d-none mt-3">
+                <img src="../assets/img/senyum.jpg" alt="" width="80%" />
+                <h3>Terimakasih sudah mau senyum untuk hari ini...</h3>
+            </div>
+
+            <div id="iklan" class="d-none">
+                <div class="my-3">.</div>
+                <div class="my-3">.</div>
+                <div class="my-3">.</div>
+                <div class="my-3">.</div>
+                <div class="my-3">.</div>
+
+                <!-- iklan -->
+                <div class="alert alert-info">
+                    <p>Mau CV atau Portofolio berbasis Web?</p>
+                    <p class="mb-2">Kasi uang kopi ini, baru na buatkanki...</p>
+                    <a
+                        href="https://api.whatsapp.com/send/?phone=6285695605182&text&type=phone_number&app_absent=0"
+                        class="btn btn-sm btn-success"
+                        target="_blank"
+                        >WhatsApp</a
+                    >
+                </div>
+            </div>
         </div>
         <script src="../assets/bootstrap5/js/bootstrap.bundle.min.js"></script>
         <script src="../assets/script.js"></script>
 
         <script>
+            window.addEventListener("load", function () {
+                alert("Baca Bismillah dulu...");
+            });
+
             function kata() {
+                // form inputan nama
                 let form = document.getElementById("form");
                 let nama = document.getElementById("nama").value;
-                let kata = document.getElementById("kata");
-                let kata2 = document.getElementById("kata2");
-                let btn = document.getElementById("btn");
-                let card = document.getElementById("card");
 
-                // menghilangkan tombol
-                // btn.addEventListener('click', function(){
-                //   this.classList.toggle('d-none')
-                // })
+                if (nama == "") {
+                    alert("Ketik dulu nama ta...");
+                    location.reload();
+                }
+
+                // tampilan kata
+                let kata = document.getElementById("kata");
+                let kata1 = document.getElementById("kata1");
+                let kata2 = document.getElementById("kata2");
+
+                // tombol tampilkan kata
+                let btn = document.getElementById("btn");
+
+                let part2 = document.getElementById("part2");
+                part2.classList.toggle("d-none");
+                let konfir = document.getElementById("konfir");
 
                 btn.classList.toggle("d-none");
                 form.classList.toggle("d-none");
-                card.classList.toggle("d-none");
+                kata.classList.toggle("d-none");
 
-                kata.innerHTML = `<p>"Hay <b>${nama}</b>, Jika kamu tersenyum di hadapan masalah, masalah pun menjadi layu dan larut."</p><br>`;
+                kata1.innerHTML = `<p>"Hai <b>${nama}</b>, Jika kamu tersenyum di hadapan masalah, masalah pun menjadi layu dan larut. (Said Nursi)"</p><br>`;
                 kata2.innerHTML = `<p>"Apalagi senyuman Kak <b>${nama}</b>, mampu meluluh lantahkan tirani kebencian bagi yang melihatnya."</p>`;
+
+                konfir.innerHTML = `Apa Kak <b>${nama}</b> sudah senyum hari ini?`;
+            }
+
+            // part 2
+            function ya() {
+                let part2 = document.getElementById("part2");
+                part2.classList.toggle("d-none");
+
+                let part3 = document.getElementById("part3");
+                part3.classList.toggle("d-none");
+
+                // alert('ok')
+            }
+
+            // sudah
+            function sudah() {
+                let kata = document.getElementById("kata");
+                kata.classList.toggle("d-none");
+
+                let part3 = document.getElementById("part3");
+                part3.classList.toggle("d-none");
+
+                let gambar = document.getElementById("gambar");
+                gambar.classList.toggle("d-none");
+
+                let iklan = document.getElementById("iklan");
+                iklan.classList.toggle("d-none");
             }
         </script>
     </body>
