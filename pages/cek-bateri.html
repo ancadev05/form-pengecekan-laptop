@@ -1,27 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cek Baterai</title>
 
     <link rel="stylesheet" href="../assets/bootstrap5/css/bootstrap.min.css" />
     <!-- <link rel="stylesheet" href="assets/style.css" /> -->
-  </head>
-  <body>
-    <div class="container mt-3">
-      <h2>Cara cek kesehatan baterai</h2>
-      <ul>
-        <li>Klik Start dan ketik CMD</li>
-        <li>Ketik pada CMD script berikut:</li>
-        <span style="color: green;">powercfg/batteryreport</span>
-        <li>Lalu tekan Enter</li>
-        <li>Selanjutnya ketik "batt" lalu tekan Tab, lalu tekan Enter</li>
-      </ul>
 
-      <img src="../assets/img/bat-health.PNG" alt="gambar" width="400px">
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+    <div class="container mt-3">
+        <h2>Cara cek ketahanan baterai</h2>
+
+        <div class="mb-2 row">
+            <label for="inputPassword" class="col-md-2 col-sm-4 ">Durasi pengetesan</label>
+            <div class="col-md-2 col-sm-4">
+                <input type="number" class="form-control" id="menit" placeholder="menit..." required/>
+                <small class="text-danger"><i>rekomendasi pengetesan selama 10 menit</i></small>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="inputPassword" class="col-md-2 col-sm-4">Persentase </label>
+            <div class="col-md-2 col-sm-4">
+                <input type="number" class="form-control" id="persen" placeholder="%" required/>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" id="hitung">Hitung</button>
+        <button class="btn btn-secondary" id="reset">Reset</button>
+
+        <p id="hasil" class="mt-3 text-danger border p-2">...</p>
+
+        <h2 class="mt-5">Cara cek kesehatan baterai</h2>
+        <ul>
+            <li>Klik Start dan ketik CMD</li>
+            <li>Ketik pada CMD script berikut:</li>
+            <span style="color: green">powercfg/batteryreport</span>
+            <li>Lalu tekan Enter</li>
+            <li>
+                Selanjutnya ketik "batt" lalu tekan Tab, lalu tekan Enter
+            </li>
+        </ul>
+
+        <img src="../assets/img/bat-health.PNG" alt="gambar" width="400px" />
     </div>
+
+    
     <script src="../assets/bootstrap5/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/script.js"></script>
-  </body>
+
+    <!-- perhitungan -->
+    <script>
+        $(document).ready(function(){
+            let menit = $('#menit')
+            let persen = $('#persen')
+            let hitung = $('#hitung')
+            let hasil = $('#hasil')
+            let reset = $('#reset')
+
+            
+
+            // hasil ketahanan baterai
+            hitung.click(function(){
+                
+                // mencari persentase berkurang dalam satu menit
+                let persen_menit = persen.val() / menit.val()
+
+                // mencari ketahana jika baterai dalam keadan 100%
+                let ketahanan = 100 / persen_menit
+
+                let hasil_hitung = Math.floor(ketahanan)
+
+                let hours = Math.floor(hasil_hitung / 60)
+                let minutes = hasil_hitung % 60
+
+                // hasil
+                if(menit.val() == false || persen.val() == false) {
+                    hasil.text('isi bagian menit dan persen untuk mengetahui ketahanan baterai')
+                } else {
+                    hasil.text(`Baterai bertahan maksimal ${hours} jam ${minutes} menit`)
+                }
+
+            })
+
+            reset.click(function(){
+                menit.val('')
+                persen.val('')
+                hasil.text('...')
+            })
+
+        })
+    </script>
+</body>
+
 </html>
